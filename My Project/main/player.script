@@ -1,41 +1,49 @@
 function init(self)
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	msg.post(".","acquire_input_focus")
+	self.runSpeed = 50
+	self.curAnim = "idle"
+	msg.post("#sprite", "play_animation", { id=hash("idle") })
+	self.speed = vmath.vector3()
+	msg.post("#collider", "enable")
 end
-
-function final(self)
-	-- Add finalization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
 function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	local pos = go.get_position()
+	print(pos)
+	if self.speed.x ~= 0 or self.speed.y ~= 0 then    
+		pos = pos + self.speed * dt
+		go.set_position(pos)
+		if self.curAnim ~= "run" then
+			-- msg.post("#sprite", "play_animation", { id=hash("run") })
+			self.curAnim = "run"
+		end
+		self.speed.x = 0
+		self.speed.y = 0
+	end
+end
+function on_input(self, action_id, action)
+	if action_id == hash("MOVE_RIGHT") then
+		self.speed.x = self.runSpeed
+		sprite.set_hflip("#sprite", false)
+	end    
+	if action_id == hash("MOVE_LEFT") then
+		self.speed.x = self.runSpeed * -1
+		sprite.set_hflip("#sprite", true)
+	end        
+	if action_id == hash("MOVE_UP") then
+		self.speed.y = self.runSpeed
+	end
+	if action_id == hash("MOVE_DOWN") then
+		self.speed.y = self.runSpeed * -1
+	end
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	print(message_id)
+	if message_id == hash("collision_response") then  -- <4>
+		print("Collission detected")
+	end
 end
 
-function on_input(self, action_id, action)
-	-- Add input-handling code here. The game object this script is attached to
-	-- must have acquired input focus:
-	--
-	--    msg.post(".", "acquire_input_focus")
-	--
-	-- All mapped input bindings will be received. Mouse and touch input will
-	-- be received regardless of where on the screen it happened.
-	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
-end
 
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Learn more: https://defold.com/manuals/hot-reload/
-	-- Remove this function if not needed
-end
+
+

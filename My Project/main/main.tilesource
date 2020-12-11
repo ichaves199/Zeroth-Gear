@@ -1,15 +1,38 @@
-image: ""
-tile_width: 16
-tile_height: 16
+image: "/assets/mapAtlas.png"
+tile_width: 32
+tile_height: 32
 tile_margin: 0
 tile_spacing: 0
-collision: ""
+collision: "/assets/mapAtlas.png"
 material_tag: "tile"
-collision_groups: "default"
-animations {
-  id: "anim"
-  start_tile: 1
-  end_tile: 1
+convex_hulls {
+  index: 0
+  count: 4
+  collision_group: "default"
 }
+convex_hulls {
+  index: 4
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 8
+  count: 11
+  collision_group: "interactable"
+}
+convex_hulls {
+  index: 19
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 23
+  count: 4
+  collision_group: "impenetrable"
+}
+collision_groups: "default"
+collision_groups: "impenetrable"
+collision_groups: "interactable"
 extrude_borders: 2
+inner_padding: 0
 sprite_trim_mode: SPRITE_TRIM_MODE_OFF
