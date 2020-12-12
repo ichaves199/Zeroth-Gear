@@ -1,10 +1,15 @@
+local mapdx
+local mapdy
+
 function init(self) -- screen can see 30x20 map tiles at once
 	msg.post(".","acquire_input_focus")
 	self.runSpeed = 100
 	self.speed = vmath.vector3()
 	msg.post("#mapcollider", "enable")
-	local my_url = msg.url()
-	print(my_url)
+	mapdx = 0
+	mapdy = 0
+	go.property("mapdx", 0)
+	go.property("mapdy", 0)
 end
 
 function final(self)
@@ -19,10 +24,26 @@ function update(self, dt) -- handles movement
 	if self.speed.x ~= 0 or self.speed.y ~= 0 then    
 		last_pos = pos
 		pos = pos + self.speed * dt
+
+		-- find delta x and y to calculate tile index in player.sript
+		mapdx = mapdx + (self.speed.x * dt)
+		mapdy = mapdy + (self.speed.y * dt)
+		go.set("#", "mapdx", mapdx)
+		-- print(go.get("#", "mapdx"))
+		go.set("#", "mapdy", mapdy)
+
 		go.set_position(pos)
 		self.speed.x = 0
 		self.speed.y = 0
 	end
+
+	local tilex = math.floor(((mapdx * -1) / 32) + 0.5)
+	local tiley = math.floor(((mapdy * -1 ) / 32) + 0.5)
+
+	print("Trying to get tile at " .. tilex .. " , " .. tiley)
+	local tile = tilemap.get_tile("/collection0/map#level", "surface", tilex, tiley) 
+	print("Tile: ".. tile)
+	
 end
 
 function on_message(self, message_id, message, sender)
@@ -33,12 +54,6 @@ function on_message(self, message_id, message, sender)
 		if message.own_group == hash("impenetrable") then -- stops player from walking through walls
 			go.set_position(last_pos)
 		elseif message.own_group == hash("interactable") then
-			-- local pos = go.get_position()
-			-- print(pos.x / 32 .. " , " .. pos.y / 32)
-			
-			-- local tile = tilemap.get_tile("/map#level", "elements", pos.x, pos.y)
-			
-			-- go.set("/player#player", "interactable", true)
 			go.set_position(last_pos)
 		end
 	end

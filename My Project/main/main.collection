@@ -55,6 +55,7 @@ embedded_instances {
 }
 embedded_instances {
   id: "player"
+  children: "camera"
   data: "components {\n"
   "  id: \"player\"\n"
   "  component: \"/player/player.script\"\n"
@@ -140,8 +141,49 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 482.0
-    y: 339.0
+    x: -16.0
+    y: -16.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "camera"
+  data: "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: 0.1\\n"
+  "far_z: 1000.0\\n"
+  "auto_aspect_ratio: 0\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -481.0
+    y: -347.0
     z: 0.0
   }
   rotation {
