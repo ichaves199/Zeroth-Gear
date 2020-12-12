@@ -1,5 +1,5 @@
 local last_pos = vmath.vector3()
-go.property("interactable", vmath.vector3())
+go.property("interactable", false)
 
 function init(self)
 	msg.post(".","acquire_input_focus")
@@ -26,42 +26,39 @@ function update(self, dt)
 end
 
 function on_input(self, action_id, action)
-	--[[
 	if action_id == hash("MOVE_RIGHT") then
-		self.speed.x = self.runSpeed
+		-- self.speed.x = self.runSpeed
+
 		sprite.set_hflip("#sprite", false)
 	end    
 	if action_id == hash("MOVE_LEFT") then
-		self.speed.x = self.runSpeed * -1
+		-- self.speed.x = self.runSpeed * -1
+
 		sprite.set_hflip("#sprite", true)
 	end        
 	if action_id == hash("MOVE_UP") then
-		self.speed.y = self.runSpeed
+		-- self.speed.y = self.runSpeed
+
 	end
 	if action_id == hash("MOVE_DOWN") then
-		self.speed.y = self.runSpeed * -1
+		-- self.speed.y = self.runSpeed * -1
+
 	end
-	]]--
+	if action_id == hash("INTERACT") then 
+		print("interaction")
+		local pos = go.get_position()
+		local tile = tilemap.get_tile("/map#level", "elements", pos.x, pos.y) -- TODO: Fix this line so it returns tile index
+		-- /map#map  main:/collection0/map  
+		-- print(tile)
+	end
 end
 
 function on_message(self, message_id, message, sender)
-	--[[
 	if message_id == hash("collision_response") then
-		print("Collision")
-		-- check if we received a contact point message. One message for each contact point
-		-- print(message.own_group)
-		-- print(message.group)
-		if message.group == hash("impenetrable") then
-			print("Contact with wall")
-			-- print(self.speed.x)
-			-- print(self.speed.y)
-			local pos = go.get_position()
-			print("Position: " .. pos)
-			print("Speed: " .. self.speed)
-			go.set_position(last_pos)
-		end
+		-- print(message.id)
+		-- print(message.other_id)
+		print(msg.url(message.other_id))
 	end
-	]]--
 end
 
 

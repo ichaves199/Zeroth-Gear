@@ -1,7 +1,7 @@
 name: "main"
 scale_along_z: 0
 embedded_instances {
-  id: "map"
+  id: "mainmap"
   data: "components {\n"
   "  id: \"main\"\n"
   "  component: \"/main/main.script\"\n"

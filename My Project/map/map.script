@@ -3,6 +3,8 @@ function init(self) -- screen can see 30x20 map tiles at once
 	self.runSpeed = 100
 	self.speed = vmath.vector3()
 	msg.post("#mapcollider", "enable")
+	local my_url = msg.url()
+	print(my_url)
 end
 
 function final(self)
@@ -26,13 +28,18 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
 		print("Collision with " .. message.own_group)
-
+		-- print(message.id)
+		-- print(message.other_id)
 		if message.own_group == hash("impenetrable") then -- stops player from walking through walls
 			go.set_position(last_pos)
 		elseif message.own_group == hash("interactable") then
-			local pos = go.get_position()
+			-- local pos = go.get_position()
+			-- print(pos.x / 32 .. " , " .. pos.y / 32)
 			
-			go.set("/player#player", "interactable", pos)
+			-- local tile = tilemap.get_tile("/map#level", "elements", pos.x, pos.y)
+			
+			-- go.set("/player#player", "interactable", true)
+			go.set_position(last_pos)
 		end
 	end
 end
