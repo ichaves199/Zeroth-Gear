@@ -8,7 +8,7 @@ function init(self)
 	self.curAnim = "idle"
 	msg.post("#sprite", "play_animation", { id=hash("idle") })
 	self.speed = vmath.vector3()
-
+	
 end
 function update(self, dt)
 	local pos = go.get_position()
