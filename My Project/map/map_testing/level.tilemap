@@ -10054,6 +10054,13 @@ layers {
     v_flip: 0
   }
   cell {
+    x: 0
+    y: 0
+    tile: 4
+    h_flip: 0
+    v_flip: 0
+  }
+  cell {
     x: 35
     y: 0
     tile: 4

@@ -1,5 +1,6 @@
 local last_pos = vmath.vector3()
 go.property("interactable", false)
+local direction = "UP"
 
 function init(self)
 	msg.post(".","acquire_input_focus")
@@ -14,9 +15,9 @@ function update(self, dt)
 	local pos = go.get_position()
 	
 	if self.speed.x ~= 0 or self.speed.y ~= 0 then    
-		-- last_pos = pos
-		-- pos = pos + self.speed * dt
-		-- go.set_position(pos)
+		last_pos = pos
+		pos = pos + self.speed * dt
+		go.set_position(pos)
 		if self.curAnim ~= "run" then
 			-- msg.post("#sprite", "play_animation", { id=hash("run") })
 			self.curAnim = "run"
@@ -29,32 +30,60 @@ end
 
 function on_input(self, action_id, action)
 	if action_id == hash("MOVE_RIGHT") then
-		-- self.speed.x = self.runSpeed
+		self.speed.x = self.runSpeed
+		direction = "RIGHT"
 
 		sprite.set_hflip("#sprite", false)
 	end    
 	if action_id == hash("MOVE_LEFT") then
-		-- self.speed.x = self.runSpeed * -1
+		self.speed.x = self.runSpeed * -1
+		direction = "LEFT"
 
 		sprite.set_hflip("#sprite", true)
 	end        
 	if action_id == hash("MOVE_UP") then
-		-- self.speed.y = self.runSpeed
-
+		self.speed.y = self.runSpeed
+		direction = "UP"
+		
 	end
 	if action_id == hash("MOVE_DOWN") then
-		-- self.speed.y = self.runSpeed * -1
+		self.speed.y = self.runSpeed * -1
+		direction = "DOWN"
 
-	end
-	if action_id == hash("INTERACT") then 
-		print("interaction")
 		
+	end
+	if action_id == hash("INTERACT") then
+		pos = go.get_position()
+		local tilex = math.floor(((pos.x * 1) / 32) + 1.0) -- + 0.5
+		local tiley = math.floor(((pos.y * 1 ) / 32) + 1.0) -- + 0.5
+
+		if direction == "UP" then
+			tiley = tiley + 1
+		elseif direction == "DOWN" then
+			tiley = tiley - 1
+		elseif direction == "LEFT" then
+			tilex = tilex - 1
+		elseif direction == "RIGHT" then
+			tilex = tilex + 1
+		end
+
+
+		print("Trying to get tile at " .. tilex .. " , " .. tiley)
+		local tile = tilemap.get_tile("/collection0/map#level", "elements", tilex, tiley) 
+		print("Tile: ".. tile)
 	end
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
-		-- handled on map.script
+		print("Collision with " .. message.group)
+		-- print(message.id)
+		-- print(message.other_id)
+		if message.group == hash("impenetrable") then -- stops player from walking through walls
+			go.set_position(last_pos)
+		elseif message.group == hash("interactable") then
+			go.set_position(last_pos)
+		end
 	end
 end
 

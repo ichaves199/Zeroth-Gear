@@ -36,7 +36,7 @@ embedded_instances {
   "  id: \"mapcollider\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"collision_shape: \\\"/map/map_testing/level.tilemap\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.0\\n"
