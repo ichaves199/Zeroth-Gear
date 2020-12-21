@@ -1,0 +1,14 @@
+{"dialog": {
+	"locationX": 3,
+	"locationY": 2,
+	"sender": "Bob",
+	"dialog": {
+	  "Message line 1",
+	  "Replyable message line", 
+	  "answers":[
+	    {"Answer1": "Reply1"},
+	    {"Answer2": "Reply2"},
+	  ]
+	}
+	   }
+}
