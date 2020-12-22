@@ -60,11 +60,21 @@ function on_message(self, message_id, message, sender)
 
 		-- display the beginning text. TODO: handle choices from questions
 		-- needs to be actually displayed on-screen
-		for _ = 1, 2 do
-			print("Interaction beginning on line " .. self.currentline)
-			local currentLineString = lines[self.currentline]
-			print("Line to analyze: " .. currentLineString)
-
+		local currentLineString = lines[self.currentline]
+		print("Interaction beginning on line " .. self.currentline)
+		print("Line to analyze: " .. currentLineString)
+		
+		if string.starts(currentLineString, "author: ") then -- looks for end of dialog
+			self.dialogType = "author"
+			self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
+			local a = gui.get_node("author")
+			gui.set_text(a, self.dialogLine)
+			self.currentline = self.currentline + 1
+		end
+		
+		currentLineString = lines[self.currentline]
+		print("Interaction beginning on line " .. self.currentline)
+		print("Line to analyze: " .. currentLineString)
 			local questions = {}
 			if string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
 				self.dialogType = "text"
@@ -102,23 +112,16 @@ function on_message(self, message_id, message, sender)
 			elseif string.starts(currentLineString, "end: ") then -- looks for end of dialog
 				self.dialogType = "end"
 				self.dialogLine = string.sub(currentLineString,6, string.len(currentLineString))
-			elseif string.starts(currentLineString, "author: ") then -- looks for end of dialog
-				self.dialogType = "author"
-				self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
-				local a = gui.get_node("author")
-				gui.set_text(a, self.dialogLine)
 			end
-		
 			print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
-			if self.dialogType ~= "author" then
+			if self.dialogType ~= "none" then
 				local t = gui.get_node("message")
 				gui.set_text(t, self.dialogLine)
 			end
 			self.currentline = self.currentline + 1
+		
 		end
-	end
 end
-
 
 function on_input(self, action_id, action)
 	if action_id == hash("INTERACT") then -- on interaction
@@ -179,11 +182,11 @@ function on_input(self, action_id, action)
 	end
 
 		print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
-	if self.dialogType ~= "author" then
-	local t = gui.get_node("message")
-	gui.set_text(t, self.dialogLine)
-	end
-	self.currentline = self.currentline + 1
+		if self.dialogType ~= "none" then
+			local t = gui.get_node("message")
+			gui.set_text(t, self.dialogLine)
+		end
+		self.currentline = self.currentline + 1
 		end   
 	end
 end
