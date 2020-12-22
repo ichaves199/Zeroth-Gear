@@ -1,11 +1,36 @@
+file = nil
+lines = {}
+
+function string.starts(String,Start) -- function used to check for dialog type
+	return string.sub(String,1,string.len(Start))==Start
+end
+
+function getTableSize(t) -- function used to check amount of lines on file
+	local count = 0
+	for _, __ in pairs(t) do
+		count = count + 1
+	end
+	return count
+end
+
 function init(self)
 	-- Add initialization code here
 	-- Learn more: https://defold.com/manuals/script/
 	-- Remove this function if not needed
 	print("Chatbox: " .. msg.url())
 	msg.post(".","acquire_input_focus")
-	
-	
+	self.interactionCoords = "0,0"
+
+	-- Read dialog file "map1dialog.txt" and insert all lines to 'line' table
+	file = io.open("./guis/map1dialog.txt", "r")
+	io.input(file)
+	for line in io.lines() do
+		table.insert(lines, line)
+	end
+	self.currentline = 0
+	msg.post("main:/player#player", "getInteractionCoords")
+	self.dialogType = "none"
+	self.dialogLine = "none"
 end
 
 function final(self)
@@ -21,28 +46,146 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	if message_id == hash("sendInteractionCoords") then -- recieving the coordinates of the interacted object from player
+		self.interactionCoords = message.coords
+		print("Interaction Coords: " .. self.interactionCoords)
+		-- this for loop  searches for the start of the dialog block from the line table
+		for i, l in ipairs(lines) do
+			if self.interactionCoords == l then
+				self.currentline = i + 1 
+				print("Found coordinate dialog at: " .. i)
+				break
+			end
+		end
+
+		-- display the beginning text. TODO: handle choices from questions
+		-- needs to be actually displayed on-screen
+		for _ = 1, 2 do
+			print("Interaction beginning on line " .. self.currentline)
+			local currentLineString = lines[self.currentline]
+			print("Line to analyze: " .. currentLineString)
+
+			local questions = {}
+			if string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
+				self.dialogType = "text"
+				self.dialogLine = string.sub(currentLineString,7, string.len(currentLineString))
+
+			elseif string.starts(currentLineString, "question: ") then -- if it's of type "question", it's
+			-- needed to find the options the player can choose and the answers the NPC say from the 
+			-- following lines
+				self.dialogType = "question"
+				self.dialogLine = string.sub(currentLineString,11, string.len(currentLineString))
+				self.currentline = self.currentline + 1
+				print("line is question, gathering options and answers")
+				for i = self.currentline, getTableSize(lines) do
+					local analyzingLine = lines[i]
+					print("Analyzing line: " .. analyzingLine)
+					local option = "none"
+					local answer = "none"
+					if string.starts(analyzingLine, "endquestion") then -- If it reaches line "endquestion", stop searching
+						print("Found end of question")
+					break end
+					if string.starts(analyzingLine, "option-") then
+						option = string.sub(analyzingLine,11, string.len(analyzingLine))
+					end
+					if string.starts(analyzingLine, "answer-") then
+						answer = string.sub(analyzingLine,11, string.len(analyzingLine))
+					end
+		
+					if option ~= "none" and answer ~= "none" then
+						questions[option] = answer
+						option = "none"
+						answer = "none"
+					end
+					self.currentline = self.currentline + 1
+				end
+			elseif string.starts(currentLineString, "end: ") then -- looks for end of dialog
+				self.dialogType = "end"
+				self.dialogLine = string.sub(currentLineString,6, string.len(currentLineString))
+			elseif string.starts(currentLineString, "author: ") then -- looks for end of dialog
+				self.dialogType = "author"
+				self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
+				local a = gui.get_node("author")
+				gui.set_text(a, self.dialogLine)
+			end
+		
+			print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
+			if self.dialogType ~= "author" then
+				local t = gui.get_node("message")
+				gui.set_text(t, self.dialogLine)
+			end
+			self.currentline = self.currentline + 1
+		end
+	end
 end
 
+
 function on_input(self, action_id, action)
-	-- Add input-handling code here. The game object this script is attached to
-	-- must have acquired input focus:
-	--
-	--    msg.post(".", "acquire_input_focus")
-	--
-	-- All mapped input bindings will be received. Mouse and touch input will
-	-- be received regardless of where on the screen it happened.
-	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
-	if action_id == hash("INTERACT") then
+	if action_id == hash("INTERACT") then -- on interaction
 		if action.pressed then
-			print("Interaction")
-			msg.post("main:/player#player", "closeGUI",  { score = msg.url()})
+			if self.dialogType == "end" then -- if previous interaction was of dialogType "end", delete chatbox
+			print("CLOSING GUI")
+				msg.post("main:/player#player", "closeGUI") -- send message to player to delete the chatbox
+			end
+			
+			-- basically same as line 59, but this time gets the dialog type and text for each consecutive line
+			-- TODO: again, handle choices from questions
+			print("Interaction beginning on line " .. self.currentline)
+			local currentLineString = lines[self.currentline]
+			print("Line to analyze: " .. currentLineString)
+
+			local questions = {}
+			if string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
+			self.dialogType = "text"
+			self.dialogLine = string.sub(currentLineString,7, string.len(currentLineString))
+
+		elseif string.starts(currentLineString, "question: ") then -- if it's of type "question", it's
+		-- needed to find the options the player can choose and the answers the NPC say from the 
+		-- following lines
+		self.dialogType = "question"
+		self.dialogLine = string.sub(currentLineString,11, string.len(currentLineString))
+		self.currentline = self.currentline + 1
+		print("line is question, gathering options and answers")
+		for i = self.currentline, getTableSize(lines) do
+			local analyzingLine = lines[i]
+			print("Analyzing line: " .. analyzingLine)
+			local option = "none"
+			local answer = "none"
+			if string.starts(analyzingLine, "endquestion") then -- If it reaches line "endquestion", stop searching
+			print("Found end of question")
+			break end
+			if string.starts(analyzingLine, "option-") then
+				option = string.sub(analyzingLine,11, string.len(analyzingLine))
+			end
+			if string.starts(analyzingLine, "answer-") then
+				answer = string.sub(analyzingLine,11, string.len(analyzingLine))
+			end
+
+			if option ~= "none" and answer ~= "none" then
+				questions[option] = answer
+				option = "none"
+				answer = "none"
+			end
+			self.currentline = self.currentline + 1
 		end
-		
-	end   
+	elseif string.starts(currentLineString, "end: ") then -- looks for end of dialog
+		self.dialogType = "end"
+		self.dialogLine = string.sub(currentLineString,6, string.len(currentLineString))
+	elseif string.starts(currentLineString, "author: ") then -- looks for end of dialog
+		self.dialogType = "author"
+		self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
+		local a = gui.get_node("author")
+		gui.set_text(a, self.dialogLine)
+	end
+
+		print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
+	if self.dialogType ~= "author" then
+	local t = gui.get_node("message")
+	gui.set_text(t, self.dialogLine)
+	end
+	self.currentline = self.currentline + 1
+		end   
+	end
 end
 
 function on_reload(self)

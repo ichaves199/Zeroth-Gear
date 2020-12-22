@@ -1,0 +1,12 @@
+14,6
+author: Mark
+text: Helo there!
+question: Hows it going?
+option-1: Pretty good.
+answer-1: That's great!
+option-2: Not so great.
+answer-2: That sucks.
+endquestion
+text: I'm a bit busy right now...
+end: Well, goodbye!
+

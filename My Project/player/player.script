@@ -9,6 +9,7 @@ function init(self)
 	self.last_pos = vmath.vector3()
 	self.inDialog = false
 	self.direction = "UP"
+	self.interactionCoords = "0,0"
 	print("Player URL: " .. msg.url())
 	
 end
@@ -63,22 +64,23 @@ function on_input(self, action_id, action)
 			local tilex = math.floor(((pos.x * 1) / 32) + 1.0) -- + 0.5
 			local tiley = math.floor(((pos.y * 1 ) / 32) + 1.0) -- + 0.5
 
-				if direction == "UP" then
+				if self.direction == "UP" then
 					tiley = tiley + 1
-				elseif direction == "DOWN" then
+				elseif self.direction == "DOWN" then
 					tiley = tiley - 1
-				elseif direction == "LEFT" then
+				elseif self.direction == "LEFT" then
 					tilex = tilex - 1
-				elseif direction == "RIGHT" then
+				elseif self.direction == "RIGHT" then
 					tilex = tilex + 1
 				end
 
-				print("Trying to get tile at " .. tilex .. " , " .. tiley)
+				print("Getting tile at " .. tilex .. "," .. tiley)
 				local tile = tilemap.get_tile("/collection0/map#level", "elements", tilex, tiley) 
-				print("Tile: ".. tile)
-			
-				collectionfactory.create("guis#chatboxfactory")
-				self.inDialog = true
+				if tile == 3 then
+					self.interactionCoords = tilex .. "," .. tiley
+					collectionfactory.create("guis#chatboxfactory")
+					self.inDialog = true
+				end
 			end
 		end
 		
@@ -99,9 +101,13 @@ function on_message(self, message_id, message, sender)
 
 	if message_id == hash("closeGUI") then
 		print("Recieved request to close GUI")
-		print(message.score)
-		go.delete(message.score)
+		print(sender)
+		go.delete(sender)
 		self.inDialog = false
+	end
+
+	if message_id == hash("getInteractionCoords") then
+		msg.post(sender, "sendInteractionCoords", { coords = self.interactionCoords })
 	end
 	
 end

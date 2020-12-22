@@ -161,7 +161,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "Author"
   font: "system_font"
-  id: "Character Name"
+  id: "author"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
