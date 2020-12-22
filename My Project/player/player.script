@@ -31,28 +31,29 @@ function update(self, dt)
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("MOVE_RIGHT") then
-		self.speed.x = self.runSpeed
-		self.direction = "RIGHT"
+	if self.inDialog == false then -- blocks player from moving on dialogs
+		if action_id == hash("MOVE_RIGHT") then
+			self.speed.x = self.runSpeed
+			self.direction = "RIGHT"
 
-		sprite.set_hflip("#sprite", false)
-	end    
-	if action_id == hash("MOVE_LEFT") then
-		self.speed.x = self.runSpeed * -1
-		self.direction = "LEFT"
+			sprite.set_hflip("#sprite", false)
+		end    
+		if action_id == hash("MOVE_LEFT") then
+			self.speed.x = self.runSpeed * -1
+			self.direction = "LEFT"
 
-		sprite.set_hflip("#sprite", true)
-	end        
-	if action_id == hash("MOVE_UP") then
-		self.speed.y = self.runSpeed
-		self.direction = "UP"
+			sprite.set_hflip("#sprite", true)
+		end        
+		if action_id == hash("MOVE_UP") then
+			self.speed.y = self.runSpeed
+			self.direction = "UP"
 		
-	end
-	if action_id == hash("MOVE_DOWN") then
-		self.speed.y = self.runSpeed * -1
-		self.direction = "DOWN"
-
+		end
+		if action_id == hash("MOVE_DOWN") then
+			self.speed.y = self.runSpeed * -1
+			self.direction = "DOWN"
 		
+		end
 	end
 	if action_id == hash("INTERACT") then
 
