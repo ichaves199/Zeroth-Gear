@@ -3,10 +3,15 @@ author: Mark
 text: Helo there!
 question: Hows it going?
 option-1: Pretty good.
-answer-1: That's great!
+text: That's great!
+text: I'm also pretty fine
+continue
 option-2: Not so great.
-answer-2: That sucks.
+text: That sucks.
+text: I hope it gets better.
+continue
 endquestion
 text: I'm a bit busy right now...
-end: Well, goodbye!
+text: Well, goodbye!
+enddialog
 
