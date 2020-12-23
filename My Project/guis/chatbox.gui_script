@@ -219,7 +219,7 @@ function on_input(self, action_id, action)
 		end
 		currentQuestion = 1
 
-		local node_position = vmath.vector3(52, 138, 0)
+		local node_position = vmath.vector3(52, 138, 0) -- 52
 		
 		for i, l in pairs(self.questions) do 
 			-- questionOrder = questionOrder + 1
@@ -232,11 +232,8 @@ function on_input(self, action_id, action)
 			gui.set_color(self.questionNodes[i], vmath.vector4(0.69, 0.6, 1, 1.0))
 			-- print(self.questionNodes[i])
 			
-			self.questionBoxNodes[i] = gui.new_box_node(node_position, vmath.vector3(200, 35, 1))
+			self.questionBoxNodes[i] = gui.new_box_node(node_position, vmath.vector3(512, 35, 1))
 			gui.set_pivot(self.questionBoxNodes[i], gui.PIVOT_SW)
-			print("----------------------------------------------")
-			print("cuestion order: " .. self.questionOrder[i])
-			print("----------------------------------------------")
 			if self.questionOrder[i] == 1 then
 				gui.set_color(self.questionBoxNodes[i], vmath.vector4(1, 0.26, 0.32, 1))
 			else
