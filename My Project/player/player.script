@@ -75,9 +75,10 @@ function on_input(self, action_id, action)
 					tilex = tilex + 1
 				end
 
-				print("Getting tile at " .. tilex .. "," .. tiley)
+				
 				local tile = tilemap.get_tile("/collection0/map#level", "elements", tilex, tiley) 
-				if tile == 3 then
+				print("Getting tile type " .. tile .. " at " .. tilex .. "," .. tiley)
+				if tile == 9 then
 					self.interactionCoords = tilex .. "," .. tiley
 					collectionfactory.create("guis#chatboxfactory")
 					self.inDialog = true

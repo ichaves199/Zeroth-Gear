@@ -8,7 +8,7 @@ material_tag: "tile"
 convex_hulls {
   index: 0
   count: 4
-  collision_group: "default"
+  collision_group: "interactable"
 }
 convex_hulls {
   index: 4
@@ -17,18 +17,38 @@ convex_hulls {
 }
 convex_hulls {
   index: 8
-  count: 11
-  collision_group: "interactable"
-}
-convex_hulls {
-  index: 19
   count: 4
   collision_group: "default"
 }
 convex_hulls {
-  index: 23
+  index: 12
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 16
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 20
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 24
+  count: 4
+  collision_group: "default"
+}
+convex_hulls {
+  index: 28
   count: 4
   collision_group: "impenetrable"
+}
+convex_hulls {
+  index: 32
+  count: 11
+  collision_group: "interactable"
 }
 collision_groups: "default"
 collision_groups: "impenetrable"

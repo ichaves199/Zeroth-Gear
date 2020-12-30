@@ -72,212 +72,156 @@ function on_message(self, message_id, message, sender)
 
 		-- display the beginning text. TODO: handle choices from questions
 		-- needs to be actually displayed on-screen
-		if(self.inQuestion) then 
-			return 
-		end
-		local currentLineString = lines[self.currentline]
-		print("Interaction beginning on line " .. self.currentline)
-		print("Line to analyze: " .. currentLineString)
-		
-		if string.starts(currentLineString, "author: ") then -- looks for end of dialog
-			self.dialogType = "author"
-			self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
-			local a = gui.get_node("author")
-			gui.set_text(a, self.dialogLine)
-			self.currentline = self.currentline + 1
-		end
-		
-		currentLineString = lines[self.currentline]
-		print("Interaction beginning on line " .. self.currentline)
-		print("Line to analyze: " .. currentLineString)
-			local questions = {}
-			if string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
-				self.dialogType = "text"
-				self.dialogLine = string.sub(currentLineString,7, string.len(currentLineString))
-				local t = gui.get_node("message")
-				gui.set_text(t, self.dialogLine)
-
-			elseif string.starts(currentLineString, "question: ") then -- if it's of type "question", it's
-			-- needed to find the options the player can choose and the answers the NPC say from the 
-			-- following lines
-				self.dialogType = "question"
-				self.dialogLine = string.sub(currentLineString,11, string.len(currentLineString))
-				self.questions = {}
-				self.questionNodes = {}
-				self.questionBoxNodes = {}
-				local t = gui.get_node("message")
-				gui.set_text(t, self.dialogLine)
-				print("line is question, gathering options and answers")
-				-- CODE TO HANDLE QUESTIONS STARTS HERE
-				local foundQuestionEnding = false
-				for i = self.currentline, getTableSize(lines) do
-					self.currentline = self.currentline + 1
-					currentLineString = lines[self.currentline]
-					-- print("Analyzing line " .. self.currentline .. ": " .. currentLineString)
-					if string.starts(currentLineString, "option-") then
-						local questionLine = string.sub(currentLineString, 11, string.len(currentLineString))
-						self.questions[questionLine] = self.currentline + 1
-						print("Recognized option " .. questionLine .. " on line " .. self.currentline)
-					end
-					if string.starts(currentLineString, "endquestion") then
-						self.questions["endquestion"] = self.currentline
-						print("Recognized question ending on line " .. self.currentline)
-						foundQuestionEnding = true
-					end
-					print("looping")
-				end
-
-				print("setting up boxes")
-				local node_position = vmath.vector3(52, 137, 10)
-				for i, l in ipairs(self.questions) do 
-					self.questionNodes[i] = gui.new_text_node(node_position, i)
-					self.questionBoxNodes[i] = gui.new_box_node(node_position, i)
-					node_position.y = node_position.y + 30
-				end
-				self.inQuestion = true
-				
-			elseif string.starts(currentLineString, "end") then -- looks for end of dialog
-				self.dialogType = "end"
-				-- self.dialogLine = string.sub(currentLineString,6, string.len(currentLineString))
-				self.dialogLine = "none"
-			end
-			print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
-			self.currentline = self.currentline + 1
-		
-		end
+		process_dialog(self)
+	end
 end
+
+function process_dialog(self)
+	if(self.inQuestion) then 
+		print("Selected question number " .. self.selectedQuestion .. "which continues on line " .. 
+		self.questionOrderToQuestionLine[self.selectedQuestion])
+		self.currentline = self.questionOrderToQuestionLine[self.selectedQuestion]
+		self.inQuestion = false
+
+		for  i, l in pairs(self.questionNodes) do 
+			gui.delete_node(l)
+		end	
+		self.questionNodes = {}
+
+		for i, l in pairs(self.questionBoxNodes) do
+			gui.delete_node(l)
+		end
+		self.questionBoxNodes = {}
+
+		-- return 
+	end
+
+	-- basically same as line 59, but this time gets the dialog type and text for each consecutive line
+	-- TODO: again, handle choices from questions
+	print("Interaction beginning on line " .. self.currentline)
+	local currentLineString = lines[self.currentline]
+	print("Line to analyze: " .. currentLineString)
+	if string.starts(currentLineString, "author: ") then -- looks for end of dialog
+	self.dialogType = "author"
+	self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
+	local a = gui.get_node("author")
+	gui.set_text(a, self.dialogLine)
+	-- self.currentline = self.currentline + 1
+	-- process_dialog(self)
+	elseif string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
+	self.dialogType = "text"
+	self.dialogLine = string.sub(currentLineString,7, string.len(currentLineString))
+
+elseif string.starts(currentLineString, "question: ") then -- if it's of type "question", it's
+-- needed to find the options the player can choose and the answers the NPC say from the 
+-- following lines
+self.dialogType = "question"
+self.dialogLine = string.sub(currentLineString,11, string.len(currentLineString))
+
+self.questions = {}
+self.questionNodes = {}
+self.questionBoxNodes = {}
+self.questionOrder = {}
+self.questionOrderToBoxNodes = {}
+self.questionOrderToQuestionLine = {}
+self.selectedQuestion = 1
+
+local t = gui.get_node("message")
+gui.set_text(t, self.dialogLine)
+print("line is question, gathering options and answers")
+-- CODE TO HANDLE QUESTIONS STARTS HERE
+-- local foundQuestionEnding = false
+local currentQuestionString = "none"
+local currentQuestion = 1
+for i = self.currentline, getTableSize(lines) do
+	currentQuestionString = lines[i]
+	-- print("Analyzing line " .. self.currentline .. ": " .. currentLineString)
+	if string.starts(currentQuestionString, "option-") then
+		local questionLine = string.sub(currentQuestionString, 11, string.len(currentQuestionString))
+		self.questions[questionLine] = i + 1
+		self.questionOrderToQuestionLine[currentQuestion] = i + 1
+		self.questionOrder[questionLine] = currentQuestion
+		currentQuestion = currentQuestion + 1
+		print("Recognized option " .. questionLine .. " on line " .. i)
+	end
+	if string.starts(currentQuestionString, "endquestion") then
+		self.endQuestion = i
+		print("Recognized question ending on line " .. i)
+		break
+	end
+end
+currentQuestion = 1
+
+local node_position = vmath.vector3(52, 138, 0) -- 52
+
+for i, l in pairs(self.questions) do 
+	-- questionOrder = questionOrder + 1
+	-- self.questionOrder[i] = questionOrder
+
+	self.questionNodes[i] = gui.new_text_node(node_position, i)
+	-- gui.set_font(self.questionNodes[i], "system_font")
+	-- gui.set_xanchor(self.questionNodes[i], gui.ANCHOR_BOTTOM)
+	gui.set_pivot(self.questionNodes[i], gui.PIVOT_SW)
+	gui.set_color(self.questionNodes[i], vmath.vector4(0.69, 0.6, 1, 1.0))
+	-- print(self.questionNodes[i])
+
+	self.questionBoxNodes[i] = gui.new_box_node(node_position, vmath.vector3(512, 35, 1))
+	gui.set_pivot(self.questionBoxNodes[i], gui.PIVOT_SW)
+	if self.questionOrder[i] == 1 then
+		gui.set_color(self.questionBoxNodes[i], vmath.vector4(1, 0.26, 0.32, 1))
+	else
+		gui.set_color(self.questionBoxNodes[i], vmath.vector4(0.2, 0.26, 0.32, 1))
+	end
+	self.questionOrderToBoxNodes[self.questionOrder[i]] = self.questionBoxNodes[i]
+	-- print(self.questionBoxNodes[i])
+	node_position.y = node_position.y + 35 -- 30
+end
+self.inQuestion = true
+
+elseif string.starts(currentLineString, "enddialog") then -- looks for end of dialog
+self.dialogType = "end"
+-- self.dialogLine = string.sub(curren-tLineString,6, string.len(currentLineString))
+self.dialogLine = "none"
+-- elseif string.starts(currentLineString, "author: ") then -- looks for end of dialog
+-- self.dialogType = "author"
+-- self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
+-- local a = gui.get_node("author")
+-- gui.set_text(a, self.dialogLine)
+elseif string.starts(currentLineString, "continue") then
+	print("End Question: " .. self.endQuestion)
+	self.currentline = self.endQuestion + 1
+	print("Found continue, skipping to line " .. self.currentline)
+	self.dialogType = "continue"
+end
+
+print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
+if self.dialogLine ~= "none" and self.dialogType ~= "author" then
+local t = gui.get_node("message")
+gui.set_text(t, self.dialogLine)
+end
+if self.dialogType == "end" then -- if previous interaction was of dialogType "end", delete chatbox
+print("CLOSING GUI")
+msg.post("main:/player#player", "closeGUI") -- send message to player to delete the chatbox
+end
+self.currentline = self.currentline + 1
+if self.dialogType == "author" or self.dialogType == "continue" then
+	process_dialog(self)
+end
+
+end   
+
 
 function on_input(self, action_id, action)
 	if action_id == hash("INTERACT") then -- on interaction
 		if action.pressed then
-
-			if(self.inQuestion) then 
-				print("Selected question number " .. self.selectedQuestion .. "which continues on line " .. 
-				self.questionOrderToQuestionLine[self.selectedQuestion])
-				self.currentline = self.questionOrderToQuestionLine[self.selectedQuestion]
-				self.inQuestion = false
-
-				for  i, l in pairs(self.questionNodes) do 
-					gui.delete_node(l)
-				end	
-				self.questionNodes = {}
-				
-				for i, l in pairs(self.questionBoxNodes) do
-					gui.delete_node(l)
-				end
-				self.questionBoxNodes = {}
-								
-			return 
+			process_dialog(self)
 		end
-						
-		-- basically same as line 59, but this time gets the dialog type and text for each consecutive line
-		-- TODO: again, handle choices from questions
-		print("Interaction beginning on line " .. self.currentline)
-		local currentLineString = lines[self.currentline]
-		print("Line to analyze: " .. currentLineString)
-		if string.starts(currentLineString, "text: ") then -- if the next dialog is of type "text"
-		self.dialogType = "text"
-		self.dialogLine = string.sub(currentLineString,7, string.len(currentLineString))
-
-		elseif string.starts(currentLineString, "question: ") then -- if it's of type "question", it's
-		-- needed to find the options the player can choose and the answers the NPC say from the 
-		-- following lines
-		self.dialogType = "question"
-		self.dialogLine = string.sub(currentLineString,11, string.len(currentLineString))
-
-		self.questions = {}
-		self.questionNodes = {}
-		self.questionBoxNodes = {}
-		self.questionOrder = {}
-		self.questionOrderToBoxNodes = {}
-		self.questionOrderToQuestionLine = {}
-		self.selectedQuestion = 1
-		
-		local t = gui.get_node("message")
-		gui.set_text(t, self.dialogLine)
-		print("line is question, gathering options and answers")
-		-- CODE TO HANDLE QUESTIONS STARTS HERE
-		-- local foundQuestionEnding = false
-		local currentQuestionString = "none"
-		local currentQuestion = 1
-		for i = self.currentline, getTableSize(lines) do
-			currentQuestionString = lines[i]
-			-- print("Analyzing line " .. self.currentline .. ": " .. currentLineString)
-			if string.starts(currentQuestionString, "option-") then
-				local questionLine = string.sub(currentQuestionString, 11, string.len(currentQuestionString))
-				self.questions[questionLine] = i + 1
-				self.questionOrderToQuestionLine[currentQuestion] = i + 1
-				self.questionOrder[questionLine] = currentQuestion
-				currentQuestion = currentQuestion + 1
-				print("Recognized option " .. questionLine .. " on line " .. i)
-			end
-			if string.starts(currentQuestionString, "endquestion") then
-				self.endQuestion = i
-				print("Recognized question ending on line " .. i)
-				break
-			end
-		end
-		currentQuestion = 1
-
-		local node_position = vmath.vector3(52, 138, 0) -- 52
-		
-		for i, l in pairs(self.questions) do 
-			-- questionOrder = questionOrder + 1
-			-- self.questionOrder[i] = questionOrder
-			
-			self.questionNodes[i] = gui.new_text_node(node_position, i)
-			-- gui.set_font(self.questionNodes[i], "system_font")
-			-- gui.set_xanchor(self.questionNodes[i], gui.ANCHOR_BOTTOM)
-			gui.set_pivot(self.questionNodes[i], gui.PIVOT_SW)
-			gui.set_color(self.questionNodes[i], vmath.vector4(0.69, 0.6, 1, 1.0))
-			-- print(self.questionNodes[i])
-			
-			self.questionBoxNodes[i] = gui.new_box_node(node_position, vmath.vector3(512, 35, 1))
-			gui.set_pivot(self.questionBoxNodes[i], gui.PIVOT_SW)
-			if self.questionOrder[i] == 1 then
-				gui.set_color(self.questionBoxNodes[i], vmath.vector4(1, 0.26, 0.32, 1))
-			else
-				gui.set_color(self.questionBoxNodes[i], vmath.vector4(0.2, 0.26, 0.32, 1))
-			end
-			self.questionOrderToBoxNodes[self.questionOrder[i]] = self.questionBoxNodes[i]
-			-- print(self.questionBoxNodes[i])
-			node_position.y = node_position.y + 35 -- 30
-		end
-		self.inQuestion = true
-		
-	elseif string.starts(currentLineString, "enddialog") then -- looks for end of dialog
-		self.dialogType = "end"
-		-- self.dialogLine = string.sub(curren-tLineString,6, string.len(currentLineString))
-		self.dialogLine = "none"
-	elseif string.starts(currentLineString, "author: ") then -- looks for end of dialog
-		self.dialogType = "author"
-		self.dialogLine = string.sub(currentLineString,9, string.len(currentLineString))
-		local a = gui.get_node("author")
-		gui.set_text(a, self.dialogLine)
-	elseif string.starts(currentLineString, "continue") then
-		print("End Question: " .. self.endQuestion)
-		self.currentline = self.endQuestion + 1
-		print("Found continue, skipping to line " .. self.currentline)
 	end
-
-		print("Dialog '" .. self.dialogLine .. "' is of type " .. self.dialogType)
-		if self.dialogLine ~= "none" then
-			local t = gui.get_node("message")
-			gui.set_text(t, self.dialogLine)
-		end
-		if self.dialogType == "end" then -- if previous interaction was of dialogType "end", delete chatbox
-		print("CLOSING GUI")
-		msg.post("main:/player#player", "closeGUI") -- send message to player to delete the chatbox
-		end
-		self.currentline = self.currentline + 1
-		end   
-	end
+			
 	if action_id == hash("ACTION_UP") and action.pressed then
 		print("ACTION_UP")
 		if self.inQuestion then
-			print("IN QUESTION")
 			local questionSize = getTableSize(self.questions)
-			print("Question size: " .. questionSize .. ", selected question: " .. self.selectedQuestion)
 			gui.set_color(self.questionOrderToBoxNodes[self.selectedQuestion], vmath.vector4(0.2, 0.26, 0.32, 1))
 			if self.selectedQuestion >= questionSize then
 				self.selectedQuestion = 1
@@ -288,11 +232,8 @@ function on_input(self, action_id, action)
 		end
 	end
 	if action_id == hash("ACTION_DOWN") and action.pressed then
-		print("ACTION_DOWN")
 		if self.inQuestion then
-			print("IN QUESTION")
 			local questionSize = getTableSize(self.questions)
-			print("Question size: " .. questionSize .. ", selected question: " .. self.selectedQuestion)
 			gui.set_color(self.questionOrderToBoxNodes[self.selectedQuestion], vmath.vector4(0.2, 0.26, 0.32, 1))
 			if self.selectedQuestion <= 1 then
 				self.selectedQuestion = questionSize
