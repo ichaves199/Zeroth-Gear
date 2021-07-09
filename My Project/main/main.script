@@ -1,9 +1,0 @@
-function init(self)
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-	-- local startpos = vmath.vector3(5, 5, 10)
-	local map_factory = collectionfactory.create("#mapfactory")
-	-- print(msg.url("#map_factory"))
-end
-
