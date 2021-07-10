@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        myRigidbody.MovePosition(
-            transform.position + change * speed * Time.fixedDeltaTime
-        );
+        change.Normalize();
+        Vector3 movePosition = transform.position + change * speed * Time.fixedDeltaTime;
+        myRigidbody.MovePosition(movePosition);
     }
 
 
