@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        Debug.Log(change);
+        // Debug.Log(change);
         UpdateAnimationAndMove();
     }
 
