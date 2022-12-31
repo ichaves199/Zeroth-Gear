@@ -54,7 +54,7 @@ public class RoomMovement : MonoBehaviour {
     }
 
     private IEnumerator MusicTransition(AudioSource audioSource, float FadeTime, AudioClip newClip) {
-        float startVolume = audioSource.volume;
+        float startVolume = 1;
  
         while (audioSource.volume > 0) {
             audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
