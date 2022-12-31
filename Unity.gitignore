@@ -10,6 +10,14 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+/Zeroth Gear/[Ll]ibrary/
+/Zeroth Gear/[Tt]emp/
+/Zeroth Gear/[Oo]bj/
+/Zeroth Gear/[Bb]uild/
+/Zeroth Gear/[Bb]uilds/
+/Zeroth Gear/[Ll]ogs/
+/Zeroth Gear/[Uu]ser[Ss]ettings/
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
