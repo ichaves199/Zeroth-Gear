@@ -71,15 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e89d420decd32d4089beb84231b4d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: SampleScene
-  cameraNewMin: {x: 0, y: 0}
-  cameraNewMax: {x: 0, y: 0}
-  playerNewPos: {x: 0, y: 0, z: 0}
-  announceArea: 0
-  areaName: 
-  text: {fileID: 0}
-  areaText: {fileID: 0}
-  changeTrack: 0
+  sceneToLoad: HouseInside
   source: {fileID: 0}
-  clip: {fileID: 0}
   fade: {fileID: 0}

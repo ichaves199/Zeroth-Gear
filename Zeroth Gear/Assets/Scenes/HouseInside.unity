@@ -245,6 +245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e5bce2d0ce93e4bb379e4e708a47fe, type: 3}
+--- !u!82 &192284426 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7704578145299909737, guid: 97e5bce2d0ce93e4bb379e4e708a47fe, type: 3}
+  m_PrefabInstance: {fileID: 192284425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &583882006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,12 +301,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8854221610125204883, guid: 7d24f823ada570c49acd554edafaeb29, type: 3}
+      propertyPath: speedScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854221610125204883, guid: 7d24f823ada570c49acd554edafaeb29, type: 3}
+      propertyPath: startFadedOut
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8854221610125204884, guid: 7d24f823ada570c49acd554edafaeb29, type: 3}
       propertyPath: m_Name
       value: CameraFade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d24f823ada570c49acd554edafaeb29, type: 3}
+--- !u!114 &583882007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8854221610125204883, guid: 7d24f823ada570c49acd554edafaeb29, type: 3}
+  m_PrefabInstance: {fileID: 583882006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c10bd4fb409614e94e19f5e0d6d274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624299596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,6 +3845,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 747976880037821215, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28831434
+      objectReference: {fileID: 0}
+    - target: {fileID: 747976880037821215, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2191627
+      objectReference: {fileID: 0}
     - target: {fileID: 4977019872668126084, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
       propertyPath: m_Name
       value: Scene Transition
@@ -3835,7 +3867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4977019872668126085, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.629
+      value: -4.77
       objectReference: {fileID: 0}
     - target: {fileID: 4977019872668126085, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3868,6 +3900,18 @@ PrefabInstance:
     - target: {fileID: 4977019872668126085, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 583882007}
+    - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 192284426}
+    - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: sceneToLoad
+      value: SampleScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}

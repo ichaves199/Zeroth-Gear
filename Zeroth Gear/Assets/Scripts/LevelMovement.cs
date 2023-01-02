@@ -1,24 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
 public class LevelMovement : MonoBehaviour {
 
     public string sceneToLoad;
-    public Vector2 cameraNewMin;
-    public Vector2 cameraNewMax;
-    public Vector3 playerNewPos;
     private CameraMovement cam;
-    public bool announceArea;
-    public string areaName;
-    public GameObject text;
-    public Text areaText;
-    public bool changeTrack;
     public AudioSource source;
-    public AudioClip clip;
     public CameraFade fade;
 
 
@@ -35,53 +23,29 @@ public class LevelMovement : MonoBehaviour {
     // TODO: add music and camera fade in/out
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player") && !other.isTrigger) {
-            SceneManager.LoadScene(sceneToLoad);
+            StartCoroutine(levelTransition(other));
         }
     }
 
-    // private IEnumerator levelTransition(Collider2D other) {
-    //     if(changeTrack) {
-    //         StartCoroutine(MusicTransition(source, 1f, clip));
-    //     }
+    private IEnumerator levelTransition(Collider2D other) {
 
-    //     fade.Fade(2f);
-    //     yield return new WaitForSeconds(0.5f);
+        // fade camera
+        fade.Fade(0.75f);
 
-    //     SceneManagement.LoadScene(sceneToLoad);
-
-    //     if(announceArea) {
-    //         StartCoroutine(placeNameCo());
-    //     }
-
-        
-    // }
-
-    private IEnumerator placeNameCo() {
-        text.SetActive(true);
-        areaText.text = areaName;
-        yield return new WaitForSeconds(2.5f);
-        text.SetActive(false);
-    }
-
-    private IEnumerator MusicTransition(AudioSource audioSource, float FadeTime, AudioClip newClip) {
+        // fade audio
         float startVolume = 1;
- 
-        while (audioSource.volume > 0) {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
- 
+        float fadeTime = 0.75f;
+        while (source.volume > 0) {
+            source.volume -= startVolume * Time.deltaTime / fadeTime;
             yield return null;
         }
- 
-        audioSource.Stop();
-        source.clip = clip;
-        source.Play();
-        while (audioSource.volume < startVolume) {
-            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
- 
-            yield return null;
-        }
-        audioSource.volume = startVolume;
+        source.Stop();
+
+        yield return new WaitForSeconds(0.75f);
         
+        // load new scene
+        SceneManager.LoadScene(sceneToLoad);
+
     }
 
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFade : MonoBehaviour
 {
-    public float speedScale = 1f;
+    public float speedScale = 0.5f;
     public Color fadeColor = Color.black;
     // Rather than Lerp or Slerp, we allow adaptability with a configurable curve
     public AnimationCurve Curve = new AnimationCurve(new Keyframe(0, 1),
@@ -14,7 +14,7 @@ public class CameraFade : MonoBehaviour
     private Texture2D texture;
     private int direction = 0;
     private float time = 0f;
-    private int done = 1;
+    private int done = 0;
 
     private void Start()
     {
@@ -25,9 +25,10 @@ public class CameraFade : MonoBehaviour
 
     }
 
-    public void Fade(float ntime = 1f) {
+    public void Fade(float nspeedScale = 0.5f) {
         done = 0;
-        time = ntime;
+        time = 0f;
+        speedScale = nspeedScale;
     }
 
     private void Update()
@@ -47,6 +48,7 @@ public class CameraFade : MonoBehaviour
                 alpha = 0f;
                 time = 1f;
                 direction = -1;
+                done = 1;
                 Debug.Log(alpha);
             }
                  
