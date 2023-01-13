@@ -26069,6 +26069,384 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Overworld_1074
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efecbc648a38f8469b5ee6bafacfc4a
+      internalID: 142279281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1075
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf48242358d58c0408b2da26d56def7b
+      internalID: 1479564311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1076
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e0790d082cd4b4ba0dd557c361ac01
+      internalID: -872979821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1077
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4d84804a2a4654c8b9244ceab6080e
+      internalID: 1515168926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1078
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83c141743ce5c8145ad905d326f1afae
+      internalID: -1647134128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1079
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd983ce75eef1b4c96e68e3341fd80b
+      internalID: -1350624330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1080
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9089e62869f3c3a408712c2aec1572ae
+      internalID: -2000230635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1081
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3626bbf305ca8e4f906cd135018d33c
+      internalID: -2115137309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1082
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d6a52a1d8d6e047907fc60bb79a779
+      internalID: -1295578278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1083
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88236e95674cc94690532fe15b82555
+      internalID: -1523744954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1084
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 774d38d82b33e3a4fb6ccb80ec21f31b
+      internalID: -1581950500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1085
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a672d57cd547f54d97e9d21f809d63e
+      internalID: 820784815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1086
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55dfefef2146db04d8fa5fb72506c3ec
+      internalID: -799236176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1087
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a96c6aa9fda96c4f9ddfdc12a45a591
+      internalID: -363595140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1088
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd0f112f999c3e44b009d30318c47a4
+      internalID: 940473250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1089
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7ea2d8086cf754aba781fa9e90375f
+      internalID: -1386864107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1090
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06b88a896c703b42ae518b11da020e8
+      internalID: -1485200303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Overworld_1091
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4199b765841a0b44bfc45f51142ec2d
+      internalID: 1632521586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -26106,6 +26484,7 @@ TextureImporter:
       Overworld_287: -6939985638536199428
       Overworld_923: -8680307602454447488
       Overworld_448: 4838231503384043685
+      Overworld_1078: -1647134128
       Overworld_182: -389721090388266748
       Overworld_684: 8973341476912519732
       Overworld_474: 1495279899040768170
@@ -26157,10 +26536,10 @@ TextureImporter:
       Overworld_939: -3621296866931629464
       Overworld_900: -7118023914124175846
       Overworld_473: -6737782894512821765
-      Overworld_779: -5755477333991734293
+      Overworld_767: 7184959186271943272
       Overworld_375: 751384457945762904
       Overworld_688: -6235135881122634103
-      Overworld_767: 7184959186271943272
+      Overworld_779: -5755477333991734293
       Overworld_858: -6550959498412151734
       Overworld_79: -155129313630589030
       Overworld_1034: -3982839816660983787
@@ -26182,6 +26561,7 @@ TextureImporter:
       Overworld_468: -5038225484044859109
       Overworld_324: -4764064866779207063
       Overworld_714: 4216740091430118462
+      Overworld_1077: 1515168926
       Overworld_592: -4035382832446957438
       Overworld_333: 9006403305558805873
       Overworld_90: -4978345626456028011
@@ -26248,11 +26628,13 @@ TextureImporter:
       Overworld_627: 8475760986002913320
       Overworld_650: 4923654984070269609
       Overworld_926: -26092626496215387
+      Overworld_1080: -2000230635
       Overworld_743: 1137828897720929537
       Overworld_376: -6724178154237686299
       Overworld_55: -3213966730498734611
       Overworld_388: 7138185562584465819
       Overworld_438: -1623607062883691400
+      Overworld_1084: -1581950500
       Overworld_418: -2593636597192664847
       Overworld_332: 8973909014971040753
       Overworld_616: 2633093516317072425
@@ -26332,6 +26714,8 @@ TextureImporter:
       Overworld_2: -7179496123588461096
       Overworld_85: -431262841095702263
       Overworld_930: -3332880679624638853
+      Overworld_1083: -1523744954
+      Overworld_1075: 1479564311
       Overworld_323: -5584861397120605639
       Overworld_492: 4128655714490781724
       Overworld_202: -4276614323535089739
@@ -26360,14 +26744,15 @@ TextureImporter:
       Overworld_94: -5236404030017859692
       Overworld_285: 7493861431360142108
       Overworld_1008: 3074887630006476876
-      Overworld_160: -8562630478679771310
+      Overworld_1087: -363595140
       Overworld_873: -451122951927397422
       Overworld_472: 4199972465763937706
+      Overworld_424: 666416119052026578
       Overworld_57: -7235469916650045074
       Overworld_787: 8902892693796514197
+      Overworld_160: -8562630478679771310
       Overworld_47: -3963497465760332096
       Overworld_185: -7921517988886787588
-      Overworld_424: 666416119052026578
       Overworld_410: 1412988594821571083
       Overworld_233: 6386603514321971003
       Overworld_260: 6333853765583690847
@@ -26390,10 +26775,10 @@ TextureImporter:
       Overworld_829: 354054504467944110
       Overworld_634: -755410492347475362
       Overworld_677: 1182282016154662244
-      Overworld_921: 2570752687776340403
       Overworld_1030: 6694043330305257019
       Overworld_980: -6554633026109739335
       Overworld_308: 409294463304589203
+      Overworld_921: 2570752687776340403
       Overworld_671: 5345869335107604618
       Overworld_1065: -7963366471572989131
       Overworld_853: 9182632162553372943
@@ -26524,6 +26909,8 @@ TextureImporter:
       Overworld_199: 8317763709045614655
       Overworld_806: 4512834315536321620
       Overworld_19: -910953043492846142
+      Overworld_1082: -1295578278
+      Overworld_1074: 142279281
       Overworld_483: 678973239949852538
       Overworld_577: 7808538442560958302
       Overworld_494: -6250417150200278333
@@ -26542,6 +26929,7 @@ TextureImporter:
       Overworld_723: 5051063393262042003
       Overworld_14: 1620404892285306412
       Overworld_914: -5536763717179455292
+      Overworld_1090: -1485200303
       Overworld_485: 4256050304118005748
       Overworld_77: -746843418931626205
       Overworld_988: -2837203549847589533
@@ -26613,6 +27001,7 @@ TextureImporter:
       Overworld_1042: -3357503133215524905
       Overworld_580: 8590715080116249248
       Overworld_345: 1380493626418424396
+      Overworld_1085: 820784815
       Overworld_786: 2608405694295130102
       Overworld_711: 4387715976581500998
       Overworld_591: -4300647438949613964
@@ -26639,15 +27028,15 @@ TextureImporter:
       Overworld_1036: 2572722799497503140
       Overworld_502: 9017138880218121653
       Overworld_446: -7360851500141600946
-      Overworld_866: 8928618290579301758
       Overworld_1052: 5859061253907293290
-      Overworld_303: 2604222589531987136
+      Overworld_452: -4875744817803963820
+      Overworld_866: 8928618290579301758
       Overworld_317: -1088169713482306408
       Overworld_396: 8707285183721296483
+      Overworld_303: 2604222589531987136
       Overworld_569: 6818533698137383071
       Overworld_647: 3244827369187313840
       Overworld_421: 8860831932780837911
-      Overworld_452: -4875744817803963820
       Overworld_940: -601651290148323354
       Overworld_863: 7146410853986203011
       Overworld_587: 4026047176536153734
@@ -26674,6 +27063,7 @@ TextureImporter:
       Overworld_96: -678857279811939978
       Overworld_342: 498694112584004291
       Overworld_945: 2845071140438075798
+      Overworld_1088: 940473250
       Overworld_1050: 4747661304256084139
       Overworld_372: 2382647387563548055
       Overworld_564: -1194225925769008434
@@ -26684,6 +27074,7 @@ TextureImporter:
       Overworld_330: -969220294788659710
       Overworld_33: 4003859095993293133
       Overworld_989: 4387582520116901146
+      Overworld_1076: -872979821
       Overworld_596: 6986815404043503449
       Overworld_394: -2773315107586596147
       Overworld_416: -8721705435041187115
@@ -26691,6 +27082,7 @@ TextureImporter:
       Overworld_792: -5437444488746045465
       Overworld_439: 8948392159441367952
       Overworld_249: 4364707925978938059
+      Overworld_1079: -1350624330
       Overworld_637: 4402204078217057323
       Overworld_18: -4496587874173803107
       Overworld_147: -1688388452655382417
@@ -26712,6 +27104,7 @@ TextureImporter:
       Overworld_351: -7104622249503891358
       Overworld_528: 2635662048093488834
       Overworld_449: -944812135659662581
+      Overworld_1086: -799236176
       Overworld_832: 3275396102076339676
       Overworld_519: -2159232272279215932
       Overworld_727: 7621579295445813202
@@ -26743,11 +27136,12 @@ TextureImporter:
       Overworld_12: 8276858336128014628
       Overworld_979: 3882323844195589566
       Overworld_748: 5953028752515605625
+      Overworld_1089: -1386864107
       Overworld_101: 4630787559964711824
       Overworld_884: 2789283966239145305
       Overworld_367: 2609072988545560573
-      Overworld_408: -375774214369927839
       Overworld_60: 80637319280397245
+      Overworld_408: -375774214369927839
       Overworld_1056: -5566080000555079149
       Overworld_294: 1537400597532574155
       Overworld_970: -3328804424743113820
@@ -26942,6 +27336,7 @@ TextureImporter:
       Overworld_1013: -7423188050471031690
       Overworld_819: 8394168856361915113
       Overworld_774: 4228699631127117651
+      Overworld_1081: -2115137309
       Overworld_177: 1908485433389683059
       Overworld_554: 3866082695135791188
       Overworld_538: -926604784634171490
@@ -27121,6 +27516,7 @@ TextureImporter:
       Overworld_610: 3157357182172252296
       Overworld_1047: 42359548754170413
       Overworld_874: 6708865231591548441
+      Overworld_1091: 1632521586
       Overworld_309: -5729920752144624996
       Overworld_1017: -7922374503034443946
       Overworld_256: -7433372280608533318
