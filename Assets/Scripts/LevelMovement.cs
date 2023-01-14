@@ -8,6 +8,7 @@ public class LevelMovement : MonoBehaviour {
     private CameraMovement cam;
     public AudioSource source;
     public CameraFade fade;
+    public PlayerMovement player;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,9 @@ public class LevelMovement : MonoBehaviour {
     }
 
     private IEnumerator levelTransition(Collider2D other) {
+
+        // lock player movement
+        player.lockMovement = true;
 
         // fade camera
         fade.Fade(0.75f);

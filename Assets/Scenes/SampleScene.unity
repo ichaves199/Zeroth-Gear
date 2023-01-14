@@ -10372,9 +10372,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 785015797}
     - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1691351893}
+    - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
       propertyPath: source
       value: 
       objectReference: {fileID: 588579005}
+    - target: {fileID: 5194677509691467226, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
+      propertyPath: sceneToLoad
+      value: HouseInside
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed2e83b22db2784db77f31b5d10f7b6, type: 3}
 --- !u!4 &1185324567 stripped
@@ -10678,6 +10686,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 251431511105095850, guid: 5abffe3321fc0264dbdb3e120b1d257d, type: 3}
   m_PrefabInstance: {fileID: 1835311875}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1691351893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1778658709514518255, guid: 50429a1a165ec7c46be5ad0af31a4f6f, type: 3}
+  m_PrefabInstance: {fileID: 1778658710565085431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907628697679feb43bb860e5a6aca5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767725045
 GameObject:
   m_ObjectHideFlags: 0
@@ -33565,6 +33584,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1778658709514518241, guid: 50429a1a165ec7c46be5ad0af31a4f6f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 722910534, guid: 5bf6a4baabc2f8d45977c67a67d969f6, type: 3}
     - target: {fileID: 1778658709514518241, guid: 50429a1a165ec7c46be5ad0af31a4f6f, type: 3}
       propertyPath: m_SortingLayer
       value: 0
